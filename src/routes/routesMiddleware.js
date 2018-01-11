@@ -1,4 +1,4 @@
-const routes = [ 'locations']
+const routes = [ 'donation-places']
 
 
 function setRoutes(app) {

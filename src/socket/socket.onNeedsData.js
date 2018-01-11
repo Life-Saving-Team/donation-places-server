@@ -1,5 +1,5 @@
 
-const {findFromPosition} = require('../query/locations.query')
+const {findFromPosition} = require('../query/donation-places.query')
 function onNeedsData(io, socket) {
     return socket.on('needs data', (payload) => {
         if(payload.longitude)  {
@@ -8,7 +8,7 @@ function onNeedsData(io, socket) {
             }
 
          if (socket.longitude)   {
-            return findFromPosition(socket.longitude, socket.latitude).then((locations) => socket.emit('new data', locations))
+            return findFromPosition(socket.longitude, socket.latitude).then((donationPlaces) => socket.emit('new data', donationPlaces))
          }
         
     })
