@@ -1,0 +1,11 @@
+
+
+node_modules/
+/coverage
+
+# System Files
+.DS_Store
+Thumbs.db
+
+
+*.env
