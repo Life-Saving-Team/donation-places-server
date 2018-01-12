@@ -19,15 +19,18 @@
     "dotenv": "^4.0.0",
     "express": "~4.15.2",
     "express-history-api-fallback": "^2.2.1",
+    "faker": "^4.1.0",
     "istanbul": "^0.4.5",
     "jade": "^1.11.0",
     "mongoose": "^4.11.7",
     "morgan": "~1.8.1",
+    "save-dev": "^2.0.0",
     "socket.io": "^1.7.4",
+    "supertest": "^3.0.0",
     "winston": "^2.3.1"
   },
   "devDependencies": {
-    "jasmine": "^2.7.0",
+    "jasmine": "^2.8.0",
     "nodemon": "^1.11.0"
   }
 }
