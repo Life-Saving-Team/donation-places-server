@@ -1,20 +1,18 @@
 
 const utility = require('../helpers/utility.js')
-const { findOneAndUpdate, add, remove, getOneById } = require('../query/donation-places.query.js')
-
-
+const db = require('../query/donation-places.query.js')
 
 
 
 function addDonationPlace(req, res) {
-    const position = {
+    const location = {
         coordinates: [req.body.longitude, req.body.latitude],
         type: "Point"
     }
-    const { name, description } = req.body
+    const { name, address } = req.body
 
-    const newDonationPlace = { name, description, position }
-    return add(newDonationPlace)
+    const newDonationPlace = { name, address, location }
+    return db.add(newDonationPlace)
         .then((added) => {
             global.io.emit('updated')
             return res.status(200).json(added)
@@ -25,13 +23,13 @@ function addDonationPlace(req, res) {
 
 function findDonationPlaceAndUpdate(req, res) {
     if (!req.body._id) utility.missingData(res, '_id')
-    const position = {
+    const location = {
         coordinates: [req.body.longitude, req.body.latitude],
         type: "Point"
     }
-    const { name, description, _id } = req.body
-    const newDonationPlace = { name, description, position }
-    return findOneAndUpdate(_id, newDonationPlace)
+    const { name, address, _id } = req.body
+    const newDonationPlace = { name, address, location }
+    return db.findOneAndUpdate(_id, newDonationPlace)
         .then((added) => {
             return res.status(200).json(added)
         })
@@ -40,7 +38,7 @@ function findDonationPlaceAndUpdate(req, res) {
 
 
 function removeDonationPlace(req, res) {
-    return remove(req.params.id)
+    return db.remove(req.params.id)
         .then(() => {
             res.status(200).json("Ok")
         })
@@ -48,10 +46,18 @@ function removeDonationPlace(req, res) {
 }
 
 function getDonationPlaceInfoById(req, res) {
-    return getOneById(req.params.id)
+    return db.getOneById(req.params.id)
         .then((item) => res.status(200).json(item))
         .catch(err => utility.badRequest(res, 'to get DonationPlace'))
 }
 
 
-module.exports = { addDonationPlace, findDonationPlaceAndUpdate, removeDonationPlace, getDonationPlaceInfoById }
+function getNearbyLocations(req, res) {
+    return db.getNearbyLocations(req.query.longitude, req.query.latitude)
+        .then((places) => res.status(200).json(places))
+        .catch(err => utility.badRequest(res, 'to get DonationPlace'))
+}
+
+
+
+module.exports = { addDonationPlace, findDonationPlaceAndUpdate, removeDonationPlace, getDonationPlaceInfoById, getNearbyLocations }
