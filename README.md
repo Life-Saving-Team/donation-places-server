@@ -1,4 +1,8 @@
 
+DB commands:
+db.getCollection('donationplaces').createIndex( {location:'2dsphere'} )
+
+
 Environemnt:
 The code has been tested on a Windows 10 x64 machine. No guarantees that the development environment would work in other operating systems; hopefully it doees
 

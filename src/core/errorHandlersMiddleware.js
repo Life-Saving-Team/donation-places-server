@@ -21,7 +21,7 @@ module.exports = app => {
             if (err instanceof mongoose.Error.CastError) {
                 return res.status(422).send('Please send proper input')
             }
-            else return res.status(500).send('Internal Server Error')
+            else return res.status(500).send(req.app.get('env') === 'development'? err : 'Internal Server Error')
 
         } else return next(err)
 

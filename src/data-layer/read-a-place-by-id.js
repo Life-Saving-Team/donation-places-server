@@ -1,6 +1,6 @@
-const locationModel = require('../models/donation-place.model')
+const placeModel = require('../models/donation-place.model')
 
 
 module.exports = (id) =>  {
-    return locationModel.findById(id).lean().exec()
+    return placeModel.findById(id).lean().exec()
 }

@@ -2,10 +2,10 @@
 const mongoose = require("mongoose")
 
 function connectToOriginalDb(){
-    return mongoose.connect(process.env.MONGODB_URI || 'mongodb://admin:admin@ds163711.mlab.com:63711/temp_database', { useMongoClient: true});
+    return mongoose.connect(process.env.MONGODB_PLACES_URI, { useMongoClient: true});
 }
 function connectToTestDb(){
-    return mongoose.connect(process.env.MONGODB_URI || 'mongodb://admin:admin@ds163711.mlab.com:63711/temp_database', { useMongoClient: true});
+    return mongoose.connect(process.env.MONGODB_PLACES_URI, { useMongoClient: true});
 }
 mongoose.connection.on('open', () => console.log('Db connected'))
 
