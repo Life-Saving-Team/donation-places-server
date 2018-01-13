@@ -6,7 +6,7 @@ module.exports = app => {
         if (err.isJoi) {
             err.isJoi = undefined
             err._object = undefined
-            return res.status(422).send(err)
+            return res.status(422).json(err)
         }
         else if (err.nF) {
             return res.status(404).send({ error: `${err.nF} is not found in our system` })
@@ -19,9 +19,9 @@ module.exports = app => {
     app.use(function (err, req, res, next) {
         if (err.name = 'CastError') {
             if (err instanceof mongoose.Error.CastError) {
-                return res.status(422).send('Please send proper input')
+                return res.status(422).json({error:'Please send proper input'})
             }
-            else return res.status(500).send(req.app.get('env') === 'development'? err : 'Internal Server Error')
+            else return res.status(500).json(req.app.get('env') === 'development'? err : {error: 'Internal Server Error'})
 
         } else return next(err)
 
