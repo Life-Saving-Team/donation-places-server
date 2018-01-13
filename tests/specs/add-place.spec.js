@@ -14,7 +14,7 @@ describe("Donors endpoint", function () {
 		const newDonor = {
 			name: faker.name.firstName(),
 			address: faker.address.streetAddress(),
-			governerate: faker.address.streetAddress(),
+			city: faker.address.streetAddress(),
 			category: faker. ,
 			email: faker.internet.email(),
 			telephone: faker.phone.phoneNumber(),
