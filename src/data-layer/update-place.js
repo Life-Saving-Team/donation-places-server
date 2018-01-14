@@ -1,10 +1,6 @@
 const placeModel = require('../models/donation-place.model')
 
-module.exports = (id, update) => {
-    return placeModel.findById(id).exec().then((item)=>{
-        item.name = update.name
-        item.address = update.address
-        item.location  = update.location || item.location
-        return item.save()
-    })
+module.exports = (_id, {name , address, location , isPrivate, city, category}) => {
+    console.log(name, _id)
+    return placeModel.findOneAndUpdate({ _id }, { name , address, location , isPrivate, city, category }, { new: true })
 }

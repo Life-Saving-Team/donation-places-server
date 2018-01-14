@@ -11,7 +11,7 @@ router.get('/donation-places', getPlaces)
 router.get('/donation-places/nearby', getNearbyPlaces)
 router.get('/donation-places/:id', getPlace)
 router.post('/donation-places', Validate.writePlace, addPlace)
-router.put('/:id', Validate.writePlace, editPlace)
-router.delete('/:id', removePlace)
+router.put('/donation-places/:id', Validate.writePlace, editPlace)
+router.delete('/donation-places/:id', removePlace)
 
 module.exports = router
